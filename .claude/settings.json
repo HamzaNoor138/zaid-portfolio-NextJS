@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next *)",
+      "Bash(curl -sI \"https://unpkg.com/three-globe/example/img/earth-night.jpg\")",
+      "Bash(curl -sI \"https://unpkg.com/three-globe/example/img/earth-topology.png\")",
+      "Bash(curl -sL \"https://unpkg.com/three-globe/example/img/earth-night.jpg\" -o /tmp/earth-night.jpg -w \"earth-night.jpg: %{size_download} bytes, time: %{time_total}s\\\\n\")",
+      "Bash(curl -sL \"https://unpkg.com/three-globe/example/img/earth-topology.png\" -o /tmp/earth-topo.png -w \"earth-topology.png: %{size_download} bytes, time: %{time_total}s\\\\n\")",
+      "Bash(curl -sL \"https://unpkg.com/three-globe/example/img/earth-night.jpg\" -o public/earth-night.jpg -w \"saved earth-night.jpg: %{size_download} bytes\\\\n\")",
+      "Bash(curl -sL \"https://unpkg.com/three-globe/example/img/earth-topology.png\" -o public/earth-topology.png -w \"saved earth-topology.png: %{size_download} bytes\\\\n\")",
+      "Bash(cd \"/d/New folder \\(3\\)/my-app/public\" && ls -la earth-* 2>/dev/null)",
+      "Read(//d/d/New folder \\(3\\)/my-app/**)",
+      "Bash(rm earth-night.jpg earth-topology.png)",
+      "Bash(mv earth-night-small.jpg earth-night.jpg)",
+      "Bash(mv earth-topology-small.jpg earth-topology.jpg)"
+    ]
+  }
+}

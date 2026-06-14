@@ -1,37 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
+import Highlights from "./Highlights";
 import SectionTitle from "./SectionTitle";
-
-const DEFAULT_HIGHLIGHTS = 1;
-
-function Highlights({ items }: { items: string[] }) {
-  const [open, setOpen] = useState(false);
-  const hasMore = items.length > DEFAULT_HIGHLIGHTS;
-  const shown = open || !hasMore ? items : items.slice(0, DEFAULT_HIGHLIGHTS);
-
-  return (
-    <div className="mb-5">
-      <ul className="space-y-2.5">
-        {shown.map((h) => (
-          <li key={h} className="flex gap-2.5 text-[13px] text-zinc-400 leading-relaxed">
-            <span className="text-indigo-500 flex-shrink-0 mt-[3px] text-[10px]">▹</span>
-            {h}
-          </li>
-        ))}
-      </ul>
-      {hasMore && (
-        <button
-          onClick={() => setOpen(!open)}
-          className="mt-3 inline-flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300 transition-colors duration-150"
-        >
-          {open ? "See less ↑" : "See more ↓"}
-        </button>
-      )}
-    </div>
-  );
-}
 
 const experience = [
   {
@@ -110,7 +79,6 @@ export default function Experience() {
                   delay={i * 0.08}
                   className={`relative flex items-center gap-0 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"} flex-col`}
                 >
-                  {/* Card */}
                   <div className="w-full md:w-[calc(50%-28px)]">
                     <div className="group relative bg-zinc-900/70 border border-zinc-800/60 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-indigo-500/30 hover:shadow-[0_0_40px_-10px_rgba(99,102,241,0.22)]">
                       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent rounded-t-2xl" />
@@ -142,7 +110,6 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  {/* Center dot */}
                   <div className="hidden md:flex w-14 flex-shrink-0 justify-center items-center">
                     <div className="relative w-4 h-4 rounded-full border-2 border-indigo-500 bg-zinc-900 flex items-center justify-center z-10 shadow-[0_0_12px_2px_rgba(99,102,241,0.35)]">
                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />

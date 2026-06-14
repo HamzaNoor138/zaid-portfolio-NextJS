@@ -1,9 +1,6 @@
-"use client";
-
-import { motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
 import SectionTitle from "./SectionTitle";
 
-/* ─── data ─────────────────────────────────────────────────── */
 const blocks = [
   {
     row: 0,
@@ -77,7 +74,6 @@ const blocks = [
 
 const aiSkills = ["Claude AI", "Cursor AI", "AI Code Review", "PR Quality Gates", "Prompt Engineering"];
 
-/* ─── card header types ─────────────────────────────────────── */
 function CardHeader({ type, meta }: { type: string; meta: string }) {
   if (type === "browser") {
     return (
@@ -128,54 +124,42 @@ function CardHeader({ type, meta }: { type: string; meta: string }) {
   return null;
 }
 
-/* ─── architecture card ─────────────────────────────────────── */
 function ArchCard({ block, delay }: { block: typeof blocks[0]; delay: number }) {
   const t = block.theme;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.55, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={`border ${t.border} ${t.glow} rounded-2xl overflow-hidden bg-gradient-to-br ${t.bg} to-transparent transition-all duration-300 h-full`}
-    >
-      <CardHeader type={block.headerType} meta={block.headerMeta} />
-      <div className="p-5">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <span className={`text-[10px] font-mono font-bold tracking-[0.2em] uppercase ${t.badge.split(" ")[0]}`}>
-              {block.label}
+    <AnimatedSection delay={delay} className="h-full">
+      <div className={`border ${t.border} ${t.glow} rounded-2xl overflow-hidden bg-gradient-to-br ${t.bg} to-transparent transition-all duration-300 h-full`}>
+        <CardHeader type={block.headerType} meta={block.headerMeta} />
+        <div className="p-5">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <span className={`text-[10px] font-mono font-bold tracking-[0.2em] uppercase ${t.badge.split(" ")[0]}`}>
+                {block.label}
+              </span>
+              <p className="text-[10px] text-zinc-600 mt-0.5">{block.sublabel}</p>
+            </div>
+            <span className={`text-[8px] font-mono px-2 py-0.5 rounded-full border ${t.badge}`}>
+              ACTIVE
             </span>
-            <p className="text-[10px] text-zinc-600 mt-0.5">{block.sublabel}</p>
           </div>
-          <span className={`text-[8px] font-mono px-2 py-0.5 rounded-full border ${t.badge}`}>
-            ACTIVE
-          </span>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {block.skills.map((s) => (
-            <span key={s} className={`text-[11px] font-medium px-2.5 py-1 rounded-lg border ${t.chip}`}>
-              {s}
-            </span>
-          ))}
+          <div className="flex flex-wrap gap-1.5">
+            {block.skills.map((s) => (
+              <span key={s} className={`text-[11px] font-medium px-2.5 py-1 rounded-lg border ${t.chip}`}>
+                {s}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-    </motion.div>
+    </AnimatedSection>
   );
 }
 
-/* ─── horizontal connector ──────────────────────────────────── */
 function HConnector({ label, delay }: { label: string; delay: number }) {
   return (
     <div className="flex flex-col items-center justify-center gap-2 self-center px-2">
       <div className="relative flex items-center w-full">
-        <motion.div
-          className="h-px w-full bg-gradient-to-r from-zinc-700/40 via-zinc-500/60 to-zinc-700/40"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay }}
-        />
+        <div className="h-px w-full bg-gradient-to-r from-zinc-700/40 via-zinc-500/60 to-zinc-700/40" />
         <div
           className="absolute w-2 h-2 rounded-full bg-zinc-400/80 blur-[1px]"
           style={{ animation: `travel-dot 2.5s linear ${delay}s infinite` }}
@@ -188,7 +172,6 @@ function HConnector({ label, delay }: { label: string; delay: number }) {
   );
 }
 
-/* ─── vertical row-to-row connector ────────────────────────── */
 function VConnector({ leftDot, rightDot }: { leftDot: string; rightDot: string }) {
   return (
     <div className="grid grid-cols-[1fr_80px_1fr] py-1">
@@ -198,7 +181,7 @@ function VConnector({ leftDot, rightDot }: { leftDot: string; rightDot: string }
             <div className="w-px h-full bg-gradient-to-b from-zinc-700/50 to-zinc-700/50" />
             <div
               className={`absolute top-0 w-1.5 h-1.5 rounded-full ${dot}`}
-              style={{ left: 'calc(50% - 3px)', animation: `fall-dot-y 1.1s linear ${idx * 0.4}s infinite` }}
+              style={{ left: "calc(50% - 3px)", animation: `fall-dot-y 1.1s linear ${idx * 0.4}s infinite` }}
             />
           </div>
         </div>
@@ -207,7 +190,6 @@ function VConnector({ leftDot, rightDot }: { leftDot: string; rightDot: string }
   );
 }
 
-/* ─── main component ────────────────────────────────────────── */
 export default function Skills() {
   const row0 = blocks.filter((b) => b.row === 0);
   const row1 = blocks.filter((b) => b.row === 1);
@@ -223,24 +205,20 @@ export default function Skills() {
           subtitle="Full-stack delivery — from browser to database, CI/CD pipeline to AI-accelerated workflows."
         />
 
-        {/* Row 0 */}
         <div className="grid grid-cols-[1fr_80px_1fr] items-stretch gap-0">
           <ArchCard block={row0[0]} delay={0.05} />
           <HConnector label="HTTP / REST" delay={0.3} />
           <ArchCard block={row0[1]} delay={0.1} />
         </div>
 
-        {/* Vertical connectors row 0 → row 1 */}
         <VConnector leftDot="bg-indigo-400" rightDot="bg-purple-400" />
 
-        {/* Row 1 */}
         <div className="grid grid-cols-[1fr_80px_1fr] items-stretch gap-0">
           <ArchCard block={row1[0]} delay={0.15} />
           <HConnector label="ORM Queries" delay={0.4} />
           <ArchCard block={row1[1]} delay={0.2} />
         </div>
 
-        {/* Converging connector → AI */}
         <div className="relative h-10 my-1">
           <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
             <line x1="25%" y1="0" x2="50%" y2="100%" stroke="#27272a" strokeWidth="1" strokeDasharray="4 3" />
@@ -248,48 +226,43 @@ export default function Skills() {
           </svg>
           <div
             className="absolute top-0 w-1.5 h-1.5 rounded-full bg-emerald-400 blur-[1px]"
-            style={{ left: 'calc(25% - 3px)', animation: 'converge-left 1.2s linear infinite' }}
+            style={{ left: "calc(25% - 3px)", animation: "converge-left 1.2s linear infinite" }}
           />
           <div
             className="absolute top-0 w-1.5 h-1.5 rounded-full bg-emerald-400 blur-[1px]"
-            style={{ left: 'calc(75% - 3px)', animation: 'converge-right 1.2s linear 0.6s infinite' }}
+            style={{ left: "calc(75% - 3px)", animation: "converge-right 1.2s linear 0.6s infinite" }}
           />
         </div>
 
-        {/* AI — full-width featured */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="border border-emerald-500/30 rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500/[0.07] to-transparent hover:shadow-[0_0_50px_-12px_rgba(16,185,129,0.4)] transition-all duration-300"
-        >
-          <div className="flex items-center gap-3 px-6 py-3 bg-zinc-950/70 border-b border-emerald-500/15">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[9px] font-mono text-emerald-400/80">ai-workflow.active</span>
-            <span className="ml-auto text-[9px] font-mono text-emerald-400/50">accelerating development...</span>
-          </div>
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-5">
-              <div>
-                <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-emerald-400">
-                  AI LAYER
+        <AnimatedSection delay={0.25}>
+          <div className="border border-emerald-500/30 rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500/[0.07] to-transparent hover:shadow-[0_0_50px_-12px_rgba(16,185,129,0.4)] transition-all duration-300">
+            <div className="flex items-center gap-3 px-6 py-3 bg-zinc-950/70 border-b border-emerald-500/15">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[9px] font-mono text-emerald-400/80">ai-workflow.active</span>
+              <span className="ml-auto text-[9px] font-mono text-emerald-400/50">accelerating development...</span>
+            </div>
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-5">
+                <div>
+                  <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-emerald-400">
+                    AI LAYER
+                  </span>
+                  <p className="text-[10px] text-zinc-600 mt-0.5">AI-Accelerated · Reviewed · Automated</p>
+                </div>
+                <span className="text-[8px] font-mono px-2 py-0.5 rounded-full border text-emerald-400 bg-emerald-500/10 border-emerald-500/25">
+                  ACTIVE
                 </span>
-                <p className="text-[10px] text-zinc-600 mt-0.5">AI-Accelerated · Reviewed · Automated</p>
               </div>
-              <span className="text-[8px] font-mono px-2 py-0.5 rounded-full border text-emerald-400 bg-emerald-500/10 border-emerald-500/25">
-                ACTIVE
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {aiSkills.map((s) => (
-                <span key={s} className="text-[11px] font-medium px-3 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/8 text-emerald-200">
-                  {s}
-                </span>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {aiSkills.map((s) => (
+                  <span key={s} className="text-[11px] font-medium px-3 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/8 text-emerald-200">
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </motion.div>
+        </AnimatedSection>
       </div>
     </section>
   );

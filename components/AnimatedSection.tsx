@@ -1,6 +1,5 @@
 "use client";
-
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -8,20 +7,38 @@ interface Props {
   delay?: number;
 }
 
-export default function AnimatedSection({
-  children,
-  className = "",
-  delay = 0,
-}: Props) {
+export default function AnimatedSection({ children, className = "", delay = 0 }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          io.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.55, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+    <div
+      ref={ref}
       className={className}
+      style={{
+        opacity: 0,
+        transform: "translateY(20px)",
+        transition: `opacity 0.55s cubic-bezier(0.21,0.47,0.32,0.98) ${delay}s, transform 0.55s cubic-bezier(0.21,0.47,0.32,0.98) ${delay}s`,
+        willChange: "opacity, transform",
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

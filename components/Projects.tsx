@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import AnimatedSection from "./AnimatedSection";
 import SectionTitle from "./SectionTitle";
 
 const projects = [
@@ -97,11 +97,9 @@ const projects = [
   },
 ];
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
 const TRUNCATE = 130;
 const DEFAULT_VISIBLE = 3;
 
-/* ── Expandable description ──────────────────────────────── */
 function Description({ text }: { text: string }) {
   const [open, setOpen] = useState(false);
   const isLong = text.length > TRUNCATE;
@@ -109,16 +107,7 @@ function Description({ text }: { text: string }) {
 
   return (
     <div>
-      <AnimatePresence initial={false}>
-        <motion.p
-          key={shown}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-sm text-zinc-400 leading-relaxed"
-        >
-          {shown}
-        </motion.p>
-      </AnimatePresence>
+      <p className="text-sm text-zinc-400 leading-relaxed">{shown}</p>
       {isLong && (
         <button
           onClick={() => setOpen(!open)}
@@ -131,7 +120,6 @@ function Description({ text }: { text: string }) {
   );
 }
 
-/* ── Tags ────────────────────────────────────────────────── */
 function Tags({ tags }: { tags: string[] }) {
   return (
     <div className="flex flex-wrap gap-2">
@@ -147,7 +135,6 @@ function Tags({ tags }: { tags: string[] }) {
   );
 }
 
-/* ── Links ───────────────────────────────────────────────── */
 function Links({ live }: { live: string | null }) {
   if (!live) return null;
   return (
@@ -164,7 +151,6 @@ function Links({ live }: { live: string | null }) {
   );
 }
 
-/* ── Browser-frame screenshot ────────────────────────────── */
 function ScreenFrame({ src, url }: { src?: string; url: string }) {
   return (
     <div className="w-full h-full min-h-[240px] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 flex flex-col">
@@ -200,17 +186,11 @@ function ScreenFrame({ src, url }: { src?: string; url: string }) {
   );
 }
 
-/* ── Project card (alternating layout) ──────────────────── */
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const rev = index % 2 !== 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.55, delay: index * 0.05, ease }}
-    >
+    <AnimatedSection delay={index * 0.05}>
       <div className="grad-border p-px rounded-3xl">
         <div className="rounded-3xl bg-[#0d0d0f] overflow-hidden grid lg:grid-cols-[1fr_1.4fr]">
           <div
@@ -226,13 +206,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               )}
               <span className="text-[10px] font-mono text-zinc-700">#{project.num}</span>
             </div>
-
             <h3 className="text-xl font-bold text-white leading-snug">{project.title}</h3>
-
             <Description text={project.description} />
-
             <Tags tags={project.tags} />
-
             <Links live={project.live} />
           </div>
 
@@ -248,11 +224,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </div>
         </div>
       </div>
-    </motion.div>
+    </AnimatedSection>
   );
 }
 
-/* ── Main ────────────────────────────────────────────────── */
 export default function Projects() {
   const [expanded, setExpanded] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -277,17 +252,11 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6 flex flex-col gap-5">
         <SectionTitle label="Projects" title="Selected Work" />
 
-        <AnimatePresence initial={false}>
-          {visible.map((project, i) => (
-            <ProjectCard key={project.num} project={project} index={i} />
-          ))}
-        </AnimatePresence>
+        {visible.map((project, i) => (
+          <ProjectCard key={project.num} project={project} index={i} />
+        ))}
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex justify-center pt-4"
-        >
+        <div className="flex justify-center pt-4">
           {!expanded ? (
             <button
               onClick={() => setExpanded(true)}
@@ -305,7 +274,7 @@ export default function Projects() {
               <span className="group-hover:-translate-y-0.5 transition-transform duration-200">↑</span>
             </button>
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

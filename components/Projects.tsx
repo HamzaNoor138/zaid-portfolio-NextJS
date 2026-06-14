@@ -20,6 +20,17 @@ const projects = [
   },
   {
     num: "02",
+    title: "Enterprise CRM & Project Operations Management Platform",
+    description:
+      "Developed an all-in-one CRM and project operations platform that helps businesses manage projects, clients, teams, tasks, tickets, products/services, alerts, reminders, meetings, and internal communication in one place. The platform includes advanced dashboards, project status tracking, priority management, automation rules, real-time chat, support ticket workflows, and reporting views, reducing manual coordination by 60% and improving overall team productivity by 40%.",
+    tags: ["SaaS Development", "AI Platform", "CRM Development", "WebRTC", "Workflow Automation", "Real-time Chat", "Role-Based Auth"],
+    live: "https://app.maxoutcrm.com/",
+    image: "/p10.jpg",
+    url: "app.maxoutcrm.com",
+    featured: false,
+  },
+  {
+    num: "03",
     title: "Tawla — Web & Mobile Restaurant OS: POS, QR Ordering, Reservations & Analytics",
     description:
       "Built Tawla as a cross-platform web and mobile application — a full-stack restaurant management solution that unifies POS billing, QR menu ordering, table reservations, payment processing, and advanced analytics in one intuitive system. The web portal gives venue owners a complete management dashboard, while the mobile app keeps staff and customers connected on the go. Restaurant owners onboard in minutes — add menu items, arrange tables, set pricing, and go live immediately. Customers scan a QR code to browse and order directly from their phones while staff process dine-in and takeaway orders with speed and accuracy. Integrated invoicing handles card, cash, and digital payments across both platforms. Built-in reporting surfaces sales trends and performance data, helping operators make smarter decisions. Tawla replaces multiple fragmented tools with one unified web + mobile platform purpose-built for the fast-paced F&B industry — scalable from a single venue to multi-location operations.",
@@ -30,7 +41,7 @@ const projects = [
     featured: false,
   },
   {
-    num: "03",
+    num: "04",
     title: "AI HRMS & Workforce Automation Platform",
     description:
       "Built an end-to-end AI-powered HR and workforce automation platform covering the full employee lifecycle — from hiring to payroll. Eliminates manual HR work entirely: CV parsing, AI-based candidate scoring, recruitment workflows, employee onboarding, project and ticket management, task assignment, work tracking, performance monitoring, and automated payroll. Role-based portals for Admin, Company, Employees, and Managers bring every team operation into one centralized platform — boosting efficiency and removing human bottlenecks at every step.",
@@ -41,7 +52,7 @@ const projects = [
     featured: false,
   },
   {
-    num: "04",
+    num: "05",
     title: "AI-Powered Email Outreach & Follow-Up Automation Platform",
     description:
       "Built a complete email campaign automation CRM that replaces all manual marketing work. Users create campaigns, build custom or AI-generated templates, schedule emails, connect multiple SMTP accounts, manage recipients, and track opens, replies, bounce rate, and campaign performance — all from one platform. Automated follow-up sequences (F1, F2, F3+) run without any manual intervention, helping teams handle high-volume outreach and improving workflow efficiency by up to 40%.",
@@ -52,7 +63,7 @@ const projects = [
     featured: false,
   },
   {
-    num: "05",
+    num: "06",
     title: "AI Startup Investment Platform with KYC & Pitch Scoring",
     description:
       "Built an AI-driven startup investment platform connecting entrepreneurs and investors in a secure digital Shark Tank-style environment. The system includes KYC verification, AI-based pitch review, content-based pitch scoring, investor recommendations, AI chatbot support, real-time messaging, file sharing, audio/video calls, scheduled meetings, one-to-one chat, group chat, and analytics to make investment evaluation faster, transparent, and more data-driven.",
@@ -63,7 +74,7 @@ const projects = [
     featured: false,
   },
   {
-    num: "06",
+    num: "07",
     title: "Direct Mail Marketing CRM with Canva-Like Design Automation",
     description:
       "Built a Canva-like creative suite integrated with CRM, QR tracking, campaign automation, and workflow management for real estate direct mail. Teams can design, personalize, approve, track, and manage print campaigns inside their own platform without relying on Canva. It includes reusable templates, lead workflows, analytics, and automation tools. The solution improved automation efficiency by 25–30% and made the team fully independent from Canva. Used Cursor, Claude Code, and Claude-assisted code review for faster delivery and quality checks.",
@@ -74,7 +85,7 @@ const projects = [
     featured: false,
   },
   {
-    num: "07",
+    num: "08",
     title: "Sports Venue Booking & Club Management ERP Platform",
     description:
       "Built PlayBase, an online venue booking and club management platform for padel/sports venues. Players can search venues by city, book courts online, join clubs, and participate in tournaments. Venue owners get a complete portal with dashboard, booking management, venue management, customers, billing, invoices, finance tracking, payment processing, cafe invites, and revenue reports. The system helps clubs manage daily operations, bookings, and payments from one centralized platform.",

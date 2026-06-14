@@ -70,3 +70,21 @@ body::after {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
 }
+
+/* CSS-driven infinite animations (replaces framer-motion repeat:Infinity to cut TBT) */
+@keyframes travel-dot {
+  from { transform: translateX(-300%); }
+  to   { transform: translateX(300%); }
+}
+@keyframes fall-dot-y {
+  from { transform: translateY(0); }
+  to   { transform: translateY(30px); }
+}
+@keyframes converge-left {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(75px, 36px); }
+}
+@keyframes converge-right {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-75px, 36px); }
+}

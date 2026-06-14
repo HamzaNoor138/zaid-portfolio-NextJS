@@ -176,10 +176,9 @@ function HConnector({ label, delay }: { label: string; delay: number }) {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay }}
         />
-        <motion.div
+        <div
           className="absolute w-2 h-2 rounded-full bg-zinc-400/80 blur-[1px]"
-          animate={{ x: ["-300%", "300%"] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay }}
+          style={{ animation: `travel-dot 2.5s linear ${delay}s infinite` }}
         />
       </div>
       <span className="text-[8px] font-mono text-zinc-700 tracking-widest uppercase whitespace-nowrap">
@@ -197,10 +196,9 @@ function VConnector({ leftDot, rightDot }: { leftDot: string; rightDot: string }
         <div key={idx} className={idx === 1 ? "col-start-3" : ""}>
           <div className="flex justify-center relative h-8">
             <div className="w-px h-full bg-gradient-to-b from-zinc-700/50 to-zinc-700/50" />
-            <motion.div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${dot}`}
-              animate={{ y: [0, 30] }}
-              transition={{ duration: 1.1, repeat: Infinity, ease: "linear", delay: idx * 0.4 }}
+            <div
+              className={`absolute top-0 w-1.5 h-1.5 rounded-full ${dot}`}
+              style={{ left: 'calc(50% - 3px)', animation: `fall-dot-y 1.1s linear ${idx * 0.4}s infinite` }}
             />
           </div>
         </div>
@@ -248,15 +246,13 @@ export default function Skills() {
             <line x1="25%" y1="0" x2="50%" y2="100%" stroke="#27272a" strokeWidth="1" strokeDasharray="4 3" />
             <line x1="75%" y1="0" x2="50%" y2="100%" stroke="#27272a" strokeWidth="1" strokeDasharray="4 3" />
           </svg>
-          <motion.div
-            className="absolute top-0 left-1/4 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-emerald-400 blur-[1px]"
-            animate={{ x: [0, 75], y: [0, 36] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+          <div
+            className="absolute top-0 w-1.5 h-1.5 rounded-full bg-emerald-400 blur-[1px]"
+            style={{ left: 'calc(25% - 3px)', animation: 'converge-left 1.2s linear infinite' }}
           />
-          <motion.div
-            className="absolute top-0 left-3/4 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-emerald-400 blur-[1px]"
-            animate={{ x: [0, -75], y: [0, 36] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: "linear", delay: 0.6 }}
+          <div
+            className="absolute top-0 w-1.5 h-1.5 rounded-full bg-emerald-400 blur-[1px]"
+            style={{ left: 'calc(75% - 3px)', animation: 'converge-right 1.2s linear 0.6s infinite' }}
           />
         </div>
 
@@ -269,11 +265,7 @@ export default function Skills() {
           className="border border-emerald-500/30 rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500/[0.07] to-transparent hover:shadow-[0_0_50px_-12px_rgba(16,185,129,0.4)] transition-all duration-300"
         >
           <div className="flex items-center gap-3 px-6 py-3 bg-zinc-950/70 border-b border-emerald-500/15">
-            <motion.div
-              className="w-2 h-2 rounded-full bg-emerald-400"
-              animate={{ opacity: [0.4, 1, 0.4] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-[9px] font-mono text-emerald-400/80">ai-workflow.active</span>
             <span className="ml-auto text-[9px] font-mono text-emerald-400/50">accelerating development...</span>
           </div>

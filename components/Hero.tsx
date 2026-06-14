@@ -66,16 +66,14 @@ export default function Hero() {
               </h1>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.25}>
-              <p className="text-xl sm:text-2xl font-semibold text-white max-w-lg leading-snug mb-4">
-                I turn complex business problems into automated, scalable web systems —
-                so your team moves faster and your revenue grows.
-              </p>
-              <p className="text-base text-zinc-500 max-w-md leading-relaxed mb-10">
-                SaaS platforms · CRM & workflow automation · REST API integrations ·
-                AI-accelerated delivery
-              </p>
-            </AnimatedSection>
+            <p className="text-xl sm:text-2xl font-semibold text-white max-w-lg leading-snug mb-4">
+              I turn complex business problems into automated, scalable web systems —
+              so your team moves faster and your revenue grows.
+            </p>
+            <p className="text-base text-zinc-500 max-w-md leading-relaxed mb-10">
+              SaaS platforms · CRM & workflow automation · REST API integrations ·
+              AI-accelerated delivery
+            </p>
 
             <AnimatedSection delay={0.35}>
               <div className="flex flex-wrap gap-4">
